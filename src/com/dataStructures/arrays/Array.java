@@ -38,7 +38,7 @@ public class Array {
 
     public void removeAt(int index) {
         if (index < 0 || index >= lastIndex) {
-            return;
+            throw new IllegalArgumentException("Index out of range");
         }
 
         numbers[index] = 0;
