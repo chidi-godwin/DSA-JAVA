@@ -107,6 +107,24 @@ public class LinkedList<E> implements Iterable<E> {
         return size;
     }
 
+    public void reverse() {
+        if (isEmpty())
+            return;
+
+        Node<E> previous = null;
+        var current = first;
+
+        while (current != null) {
+            var next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+
+        last = first;
+        first = previous;
+    }
+
     public E[] toArray() {
         var array = new ArrayList<E>();
         array.ensureCapacity(size);
@@ -120,7 +138,6 @@ public class LinkedList<E> implements Iterable<E> {
         @SuppressWarnings("unchecked")
         E[] output = (E[]) new Object[size];
         return array.toArray(output);
-
     }
 
     @Override
