@@ -85,6 +85,25 @@ public class LinkedList<E> implements Iterable<E> {
         size--;
     }
 
+    public E getKthFromEnd(int k) {
+        if (isEmpty())
+            throw new IllegalStateException("List is empty");
+
+        var start = first;
+        var end = first;
+
+
+        for (int i = 0; i < k - 1; i++)
+            start = start.next;
+
+        while(start != last) {
+            start = start.next;
+            end = end.next;
+        }
+
+        return end.value;
+    }
+
     public boolean contains(E value) {
         return indexOf(value) != -1;
     }

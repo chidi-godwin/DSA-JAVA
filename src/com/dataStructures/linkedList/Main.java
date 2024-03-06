@@ -7,7 +7,7 @@ public class Main {
         list.addLast(20);
         list.addLast(30);
 
-        list.reverse();
+        System.out.println(list.getKthFromEnd(3));
         System.out.println(list);
     }
 }
