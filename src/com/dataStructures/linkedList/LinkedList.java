@@ -76,11 +76,11 @@ public class LinkedList<E> implements Iterable<E> {
 
         if (previous == null) {
             first = last = null;
-            return;
-        }
+        } else {
 
-        previous.next = null;
-        last = previous;
+            previous.next = null;
+            last = previous;
+        }
 
         size--;
     }
@@ -88,6 +88,9 @@ public class LinkedList<E> implements Iterable<E> {
     public E getKthFromEnd(int k) {
         if (isEmpty())
             throw new IllegalStateException("List is empty");
+
+        if (k > size)
+            throw new IllegalArgumentException("Index out of range");
 
         var start = first;
         var end = first;
