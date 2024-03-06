@@ -108,9 +108,17 @@ public class DoublyLinkedList<E> implements Iterable<E> {
         return size;
     }
 
-    public void revers() {
+    public void reverse() {
         if (isEmpty())
             return;
+
+        var current = head;
+        while (current != null) {
+            var prev = current.next;
+            current.next = current.prev;
+            current.prev = prev;
+            current = prev;
+        }
 
         var temp = tail;
         tail = head;

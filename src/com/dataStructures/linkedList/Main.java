@@ -24,6 +24,8 @@ public class Main {
 
         System.out.println(doublyList.getKthFromEnd(5));
         System.out.println(doublyList);
+        doublyList.reverse();
+        System.out.println(doublyList);
         System.out.println(doublyList.size());
     }
 }
