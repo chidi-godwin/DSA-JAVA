@@ -1,7 +1,6 @@
 package com.dataStructures.stack;
 
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,5 +10,16 @@ public class Main {
         var reversedWord = StringReverser.reverse(word);
 
         System.out.println("Reversed Word: " + reversedWord);
+        var expression = new Expression("");
+
+        var patterns = new String[]{
+            "{[()<>]} true", "{[(<>)} false", "{[()><]} false", "Hello,world! true", " true", "([ false"
+        };
+
+        for (var pattern: patterns) {
+            var split = pattern.split(" ");
+            expression.setExpression(split[0]);
+            System.out.println(expression.getExpression() + " " + expression.isBalanced() + " " + split[1]);
+        }
     }
 }
