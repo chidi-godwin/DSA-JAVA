@@ -6,7 +6,6 @@ public class Main {
         for (int i = 10; i < 60; i+=10)
             queue.enqueue(i);
 
-
         System.out.printf("The element at the front of the queue is %d%n", queue.dequeue());
         System.out.printf("The second element on the queue is %d%n", queue.dequeue());
 
