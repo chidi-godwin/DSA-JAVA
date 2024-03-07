@@ -20,4 +20,9 @@ public class Stack<E> {
     public boolean isEmpty() {
         return list.isEmpty();
     }
+
+    @Override
+    public String toString() {
+        return list.toString();
+    }
 }
