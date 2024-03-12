@@ -5,24 +5,33 @@ import java.util.LinkedList;
 
 public class HashMap {
 
-    private static class Entry {
-
-        private final int key;
-        private String value;
-        public Entry(int key, String value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("(key=%d, value=%s)", key, value);
-        }
-
-    }
     private final int size;
-
     private final LinkedList<Entry>[] hashTable;
+
+    public HashMap(int size) {
+        this.size = size;
+        //noinspection unchecked
+        hashTable = new LinkedList[this.size];
+    }
+
+    public static void main(String[] args) {
+        var intHashMap = new HashMap(10);
+        intHashMap.put(1, "a");
+        intHashMap.put(2, "b");
+        intHashMap.put(3, "c");
+
+        System.out.println(intHashMap);
+        System.out.println(intHashMap.get(2));
+        System.out.println(intHashMap.get(3));
+        intHashMap.put(12, "L");
+        System.out.println(intHashMap);
+        System.out.println(intHashMap.get(2));
+        System.out.println(intHashMap.get(12));
+        System.out.println(intHashMap.get(9));
+        intHashMap.remove(12);
+        intHashMap.remove(5);
+        System.out.println(intHashMap);
+    }
 
     private int hashFunction(int key) {
         return key % size;
@@ -42,19 +51,13 @@ public class HashMap {
         var entryList = getEntryList(key);
 
         if (entryList != null) {
-            for (var entry: entryList) {
+            for (var entry : entryList) {
                 if (entry.key == key)
                     return entry;
             }
         }
 
         return null;
-    }
-
-    public HashMap(int size) {
-        this.size = size;
-        //noinspection unchecked
-        hashTable = new LinkedList[this.size];
     }
 
     public void put(int key, String value) {
@@ -92,22 +95,20 @@ public class HashMap {
         return Arrays.toString(hashTable);
     }
 
-    public static void main(String[] args) {
-        var intHashMap = new HashMap(10);
-        intHashMap.put(1, "a");
-        intHashMap.put(2, "b");
-        intHashMap.put(3, "c");
+    private static class Entry {
 
-        System.out.println(intHashMap);
-        System.out.println(intHashMap.get(2));
-        System.out.println(intHashMap.get(3));
-        intHashMap.put(12, "L");
-        System.out.println(intHashMap);
-        System.out.println(intHashMap.get(2));
-        System.out.println(intHashMap.get(12));
-        System.out.println(intHashMap.get(9));
-        intHashMap.remove(12);
-        intHashMap.remove(5);
-        System.out.println(intHashMap);
+        private final int key;
+        private String value;
+
+        public Entry(int key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("(key=%d, value=%s)", key, value);
+        }
+
     }
 }
