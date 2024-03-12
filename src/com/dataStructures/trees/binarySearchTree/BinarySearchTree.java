@@ -1,25 +1,29 @@
 package com.dataStructures.trees.binarySearchTree;
 
 public class BinarySearchTree {
-    private static class Node {
-        private int value;
-        private Node leftChild;
-        private Node rightChild;
-
-        public Node (int value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("(Node: %s)", value);
-        }
-    }
-
     private Node root;
 
+    public static void main(String[] args) {
+        var tree = new BinarySearchTree();
+        tree.insert(7);
+        tree.insert(4);
+        tree.insert(9);
+        tree.insert(1);
+        tree.insert(6);
+        tree.insert(8);
+        tree.insert(10);
 
-    public void insert (int value) {
+        tree.traversePreOrder();
+        System.out.println();
+
+        tree.traverseInOrder();
+        System.out.println();
+
+        tree.traversePostOrder();
+        System.out.println();
+    }
+
+    public void insert(int value) {
         var node = new Node(value);
 
         if (root == null) {
@@ -99,23 +103,18 @@ public class BinarySearchTree {
         traversePostOrder(root);
     }
 
-    public static void main(String[] args) {
-        var tree = new BinarySearchTree();
-        tree.insert(7);
-        tree.insert(4);
-        tree.insert(9);
-        tree.insert(1);
-        tree.insert(6);
-        tree.insert(8);
-        tree.insert(10);
+    private static class Node {
+        private int value;
+        private Node leftChild;
+        private Node rightChild;
 
-        tree.traversePreOrder();
-        System.out.println();
+        public Node(int value) {
+            this.value = value;
+        }
 
-        tree.traverseInOrder();
-        System.out.println();
-
-        tree.traversePostOrder();
-        System.out.println();
+        @Override
+        public String toString() {
+            return String.format("(Node: %s)", value);
+        }
     }
 }
