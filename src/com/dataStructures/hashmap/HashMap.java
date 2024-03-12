@@ -28,6 +28,29 @@ public class HashMap {
         return key % size;
     }
 
+    private LinkedList<Entry> getEntryList(int key) {
+        var index = hashFunction(key);
+        return hashTable[index];
+    }
+
+    private LinkedList<Entry> createEntryList(int key) {
+        var index = hashFunction(key);
+        return hashTable[index] = new LinkedList<>();
+    }
+
+    private Entry getEntry(int key) {
+        var entryList = getEntryList(key);
+
+        if (entryList != null) {
+            for (var entry: entryList) {
+                if (entry.key == key)
+                    return entry;
+            }
+        }
+
+        return null;
+    }
+
     public HashMap(int size) {
         this.size = size;
         //noinspection unchecked
@@ -35,44 +58,33 @@ public class HashMap {
     }
 
     public void put(int key, String value) {
-        int index = hashFunction(key);
-        var entryList = hashTable[index];
-        if (entryList == null) {
-            entryList = hashTable[index] = new LinkedList<>();
-        } else {
-            for (var entry : entryList) {
-                if (entry.key == key) {
-                    entry.value = value;
-                    return;
-                }
-            }
-
+        var entry = getEntry(key);
+        if (entry != null) {
+            entry.value = value;
+            return;
         }
+
+        var entryList = getEntryList(key);
+
+        if (entryList == null)
+            entryList = createEntryList(key);
+
         entryList.addLast(new Entry(key, value));
     }
 
     public String get(int key) {
-        int index = hashFunction(key);
-        var entryList = hashTable[index];
+        var entry = getEntry(key);
 
-        if (!(entryList == null)) {
-            for (var entry : entryList) {
-                if (entry.key == key)
-                    return entry.value;
-            }
-        }
+        if (entry != null)
+            return entry.value;
 
         return null;
     }
 
     public void remove(int key) {
-        int index = hashFunction(key);
-        var entryList = hashTable[index];
-
-        if (entryList == null)
-            return;
-
-        entryList.removeIf(entry -> entry.key == key);
+        var entry = getEntry(key);
+        if (entry != null)
+            getEntryList(key).remove(entry);
     }
 
     @Override
