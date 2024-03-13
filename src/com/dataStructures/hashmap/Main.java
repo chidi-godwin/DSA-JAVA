@@ -10,7 +10,7 @@ public class Main {
     }
 
     public static char findFirstNonRepeatingCharacter(String sentence) {
-        Map<Character, Integer> letterCount = new HashMap<>();
+        Map<Character, Integer> letterCount = new java.util.HashMap<>();
         char[] splitLetters = sentence.toCharArray();
 
         for (char letter: splitLetters)

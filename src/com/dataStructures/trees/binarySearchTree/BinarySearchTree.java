@@ -21,6 +21,7 @@ public class BinarySearchTree {
 
         tree.traversePostOrder();
         System.out.println();
+        System.out.printf("the height of the tree is %d units", tree.height());
     }
 
     public void insert(int value) {
@@ -101,6 +102,22 @@ public class BinarySearchTree {
 
     public void traversePostOrder() {
         traversePostOrder(root);
+    }
+
+    public int height() {
+        if (root == null)
+            return 0;
+
+        return height(root);
+    }
+    private int height(Node root) {
+        if (root == null)
+            return -1;
+
+        if (root.leftChild == null && root.rightChild == null)
+            return 0;
+
+        return 1 + Math.max(height(root.leftChild), height(root.rightChild));
     }
 
     private static class Node {
