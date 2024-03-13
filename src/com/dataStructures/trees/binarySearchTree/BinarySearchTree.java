@@ -21,7 +21,10 @@ public class BinarySearchTree {
 
         tree.traversePostOrder();
         System.out.println();
-        System.out.printf("the height of the tree is %d units", tree.height());
+
+        System.out.printf("the height of the tree is %d units%n", tree.height());
+        System.out.printf("The minimum node in the tree is %d%n", tree.min());
+        System.out.printf("The maximum node in the tree is %d%n", tree.max());
     }
 
     public void insert(int value) {
@@ -120,8 +123,36 @@ public class BinarySearchTree {
         return 1 + Math.max(height(root.leftChild), height(root.rightChild));
     }
 
+    private int min() {
+        if (root == null)
+            return -1;
+
+        return min(root);
+    }
+
+    private int min(Node root) {
+        if (root.leftChild == null)
+            return root.value;
+
+        return min(root.leftChild);
+    }
+
+    private int max() {
+        if (root == null)
+            return -1;
+
+        return max(root);
+    }
+
+    private int max(Node root) {
+        if (root.rightChild == null)
+            return root.value;
+
+        return max(root.rightChild);
+    }
+
     private static class Node {
-        private int value;
+        private final int value;
         private Node leftChild;
         private Node rightChild;
 
