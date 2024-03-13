@@ -113,6 +113,7 @@ public class BinarySearchTree {
 
         return height(root);
     }
+
     private int height(Node root) {
         if (root == null)
             return -1;
@@ -123,7 +124,7 @@ public class BinarySearchTree {
         return 1 + Math.max(height(root.leftChild), height(root.rightChild));
     }
 
-    private int min() {
+    public int min() {
         if (root == null)
             return -1;
 
@@ -137,7 +138,7 @@ public class BinarySearchTree {
         return min(root.leftChild);
     }
 
-    private int max() {
+    public int max() {
         if (root == null)
             return -1;
 
@@ -150,6 +151,7 @@ public class BinarySearchTree {
 
         return max(root.rightChild);
     }
+
 
     private static class Node {
         private final int value;
