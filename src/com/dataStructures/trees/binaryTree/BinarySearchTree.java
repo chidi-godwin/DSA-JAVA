@@ -3,7 +3,7 @@ package com.dataStructures.trees.binaryTree;
 public class BinarySearchTree {
     private Node root;
 
-      public static void main(String[] args) {
+    public static void main(String[] args) {
         var tree = new BinarySearchTree();
         tree.insert(7);
         tree.insert(4);
@@ -94,7 +94,7 @@ public class BinarySearchTree {
         traverseInOrder(root.rightChild);
     }
 
-     private void traversePostOrder(Node root) {
+    private void traversePostOrder(Node root) {
         if (root == null)
             return;
 
@@ -143,6 +143,19 @@ public class BinarySearchTree {
             return -1;
 
         return max(root);
+    }
+
+    public boolean isBinarySearchTree() {
+        return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBinarySearchTree(Node root, int min, int max) {
+        if (root == null)
+            return false;
+        if (root.value < min || root.value > max)
+            return false;
+
+        return isBinarySearchTree(root.leftChild, min, root.value - 1) && isBinarySearchTree(root.rightChild, root.value + 1, max);
     }
 
     private int max(Node root) {
