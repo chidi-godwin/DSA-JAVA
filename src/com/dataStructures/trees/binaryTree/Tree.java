@@ -1,5 +1,7 @@
 package com.dataStructures.trees.binaryTree;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Tree {
     private Node root;
 
@@ -38,10 +40,21 @@ public class Tree {
     }
 
     private boolean isLeaf(Node root) {
-        if (root.leftChild == null && root.rightChild == null)
+        return root.leftChild == null && root.rightChild == null;
+    }
+
+    public boolean equals(Tree other) {
+        if (other == null)
+            return false;
+
+        return equals(this.root, other.root);
+    }
+
+    private boolean equals(Node firstNode, Node secondNode) {
+        if (firstNode == null & secondNode == null)
             return true;
 
-        return false;
+        return firstNode != null && secondNode != null && equals(firstNode.leftChild, secondNode.leftChild) && equals(firstNode.rightChild, secondNode.rightChild);
     }
 
     private static class Node {

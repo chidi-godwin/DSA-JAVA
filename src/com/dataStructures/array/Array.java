@@ -19,8 +19,7 @@ public class Array {
         int[] newArray = new int[size];
 
         // loop through the previous array and copy items
-        for (int i = 0; i < numbers.length; i++)
-            newArray[i] = numbers[i];
+        System.arraycopy(numbers, 0, newArray, 0, numbers.length);
 
         numbers = newArray;
     }

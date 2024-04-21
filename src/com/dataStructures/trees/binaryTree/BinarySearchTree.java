@@ -3,7 +3,7 @@ package com.dataStructures.trees.binaryTree;
 public class BinarySearchTree {
     private Node root;
 
-    public static void main(String[] args) {
+      public static void main(String[] args) {
         var tree = new BinarySearchTree();
         tree.insert(7);
         tree.insert(4);
@@ -94,7 +94,7 @@ public class BinarySearchTree {
         traverseInOrder(root.rightChild);
     }
 
-    private void traversePostOrder(Node root) {
+     private void traversePostOrder(Node root) {
         if (root == null)
             return;
 
