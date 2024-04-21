@@ -70,6 +70,23 @@ public class Tree {
         return isBinarySearchTree(root.leftChild, min, root.value - 1) && isBinarySearchTree(root.rightChild, root.value + 1, max);
     }
 
+    public void printNodesAtKDistance(int k) {
+        printNodesAtKDistance(root, k);
+    }
+
+    private void printNodesAtKDistance(Node root, int k) {
+        if (root == null)
+            return;
+
+        if (k == 0) {
+            System.out.println(root.value);
+            return;
+        }
+
+        printNodesAtKDistance(root.leftChild, k - 1);
+        printNodesAtKDistance(root.rightChild, k - 1);
+    }
+
     private static class Node {
         private final int value;
         private Node leftChild;
