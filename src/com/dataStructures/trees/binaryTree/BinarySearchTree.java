@@ -145,19 +145,6 @@ public class BinarySearchTree {
         return max(root);
     }
 
-    public boolean isBinarySearchTree() {
-        return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
-    }
-
-    private boolean isBinarySearchTree(Node root, int min, int max) {
-        if (root == null)
-            return false;
-        if (root.value < min || root.value > max)
-            return false;
-
-        return isBinarySearchTree(root.leftChild, min, root.value - 1) && isBinarySearchTree(root.rightChild, root.value + 1, max);
-    }
-
     private int max(Node root) {
         if (root.rightChild == null)
             return root.value;
