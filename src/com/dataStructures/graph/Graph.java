@@ -55,4 +55,52 @@ public class Graph {
         }
     }
 
+    public void dfsIter() {
+        Set<Integer> visited = new HashSet<>();
+        Stack<Integer> stack = new Stack<>();
+
+        for (int node: adjacencyList.keySet()) {
+            if (!visited.contains(node)) {
+                stack.push(node);
+
+                while (!stack.isEmpty()) {
+                    int currentNode = stack.pop();
+
+                    if (!visited.contains(currentNode)) {
+                        visited.add(currentNode);
+                        System.out.println(currentNode);
+
+                        for (int childNode : adjacencyList.get(currentNode))
+                            if (!visited.contains(childNode))
+                                stack.push(childNode);
+                    }
+                }
+            }
+        }
+    }
+
+    public void bfs() {
+        Set<Integer> visited = new HashSet<>();
+        Deque<Integer> queue = new ArrayDeque<>();
+
+         for (int node: adjacencyList.keySet()) {
+             if(!visited.contains(node)) {
+                 queue.addLast(node);
+                 visited.add(node);
+
+                 while (!queue.isEmpty()) {
+                     int currentNode = queue.pollFirst();
+                     System.out.println(currentNode);
+
+                     for (int childNode: adjacencyList.get(currentNode))
+                         if (!visited.contains(childNode)) {
+                             queue.addLast(childNode);
+                             visited.add(childNode);
+                         }
+
+                 }
+             }
+         }
+    }
+
 }

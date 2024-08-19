@@ -1,8 +1,42 @@
 package com.dataStructures.graph;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Main {
     public static void main(String[] args) {
-        Graph graph = new Graph();
+        final Graph graph = getGraph();
+
+        testGraphTraversal(graph);
+
+        graph.print();
+
+        graph.removeEdge(5, 9);
+        System.out.println("remove edge 9 from 5");
+        graph.print();
+
+        System.out.println("remove node 9");
+        graph.removeNode(9);
+        graph.print();
+
+    }
+
+    private static void testGraphTraversal(Graph graph) {
+        System.out.println();
+        graph.dfs();
+        System.out.println();
+
+        System.out.println();
+        graph.dfsIter();
+        System.out.println();
+
+        System.out.println();
+        graph.bfs();
+        System.out.println();
+    }
+
+    @NotNull
+    private static Graph getGraph() {
+        final Graph graph = new Graph();
 
         graph.addNode(7);
         graph.addNode(5);
@@ -27,20 +61,6 @@ public class Main {
         graph.addEdge(9, 2);
         graph.addEdge(9, 7);
         graph.addEdge(9, 5);
-
-        System.out.println();
-        graph.dfs();
-        System.out.println();
-
-        graph.print();
-
-        graph.removeEdge(5, 9);
-        System.out.println("remove edge 9 from 5");
-        graph.print();
-
-        System.out.println("remove node 9");
-        graph.removeNode(9);
-        graph.print();
-
+        return graph;
     }
 }
