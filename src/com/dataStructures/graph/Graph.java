@@ -15,15 +15,8 @@ public class Graph {
 
     public void addEdge(int source, int destination) {
         // verify that source and destination exists
-        var sourceNode = this.adjacencyList.get(source);
-        if (sourceNode == null)
-            throw new IllegalStateException("Source does not exist");
-        var destinationNode = this.adjacencyList.get(destination);
-        if (destinationNode == null)
-            throw new IllegalStateException("Destination does not exist");
-
-        sourceNode.add(destination);
-        // destinationNode.add(source)  // uncomment this line for undirected graphs
+        this.adjacencyList.computeIfAbsent(source, k -> new ArrayList<>()).add(destination);
+        // this.adjacencyList.computeIfAbsent(source, k -> new ArrayList<>()).add(source)  // uncomment this line for undirected graphs
     }
 
     public void removeEdge(int source, int destination) {
@@ -61,4 +54,5 @@ public class Graph {
                 dfs(neighbor, visited);
         }
     }
+
 }
