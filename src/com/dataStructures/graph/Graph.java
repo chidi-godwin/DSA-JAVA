@@ -1,9 +1,6 @@
 package com.dataStructures.graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
     private final Map<Integer, List<Integer>> adjacencyList;
@@ -45,6 +42,23 @@ public class Graph {
     public void print() {
         for (var key: adjacencyList.keySet()) {
             System.out.println(key + ": " + adjacencyList.get(key));
+        }
+    }
+
+    public void dfs() {
+        Set<Integer> visited = new HashSet<>();
+        for (int node: adjacencyList.keySet())
+            if (!visited.contains(node))
+                dfs(node, visited);
+    }
+
+    private void dfs(int node, Set<Integer> visited) {
+        visited.add(node);
+        System.out.println(node);
+
+        for (int neighbor: adjacencyList.get(node)) {
+            if (!visited.contains(neighbor))
+                dfs(neighbor, visited);
         }
     }
 }

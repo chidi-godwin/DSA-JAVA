@@ -28,6 +28,10 @@ public class Main {
         graph.addEdge(9, 7);
         graph.addEdge(9, 5);
 
+        System.out.println();
+        graph.dfs();
+        System.out.println();
+
         graph.print();
 
         graph.removeEdge(5, 9);
