@@ -103,4 +103,63 @@ public class Graph {
          }
     }
 
+    public void topologicalSort() {
+        Set<Integer> visited = new HashSet<>();
+        Stack<Integer> stack = new Stack<>();
+
+        for (int node: adjacencyList.keySet()) {
+            if (!visited.contains(node)) {
+                topologicalSort(node, visited, stack);
+            }
+        }
+
+        List<Integer> sorted = new ArrayList<>();
+        while(!stack.isEmpty()) {
+           sorted.add(stack.pop());
+        }
+    }
+
+    public void topologicalSort(int node, Set<Integer> visited, Stack<Integer> stack) {
+        visited.add(node);
+
+        for (int childNode: adjacencyList.get(node))
+            if (!visited.contains(childNode))
+                topologicalSort(node, visited, stack);
+
+        stack.push(node);
+    }
+
+    public boolean hasCycle() {
+        Set<Integer> all = new HashSet<>(adjacencyList.keySet());
+        Set<Integer> visiting = new HashSet<>(), visited = new HashSet<>();
+
+        while (!all.isEmpty()) {
+            var current = all.iterator().next() ;
+            boolean cycle = hasCycle(current, all, visited, visiting);
+            if (cycle)
+                return true;
+        }
+
+        return false;
+    }
+
+    private boolean hasCycle(int node, Set<Integer> all, Set<Integer> visiting, Set<Integer> visited) {
+        all.remove(node);
+        visiting.add(node);
+
+        for (int neighbor: adjacencyList.get(node)) {
+            if (!visited.contains(neighbor)) {
+                if (visiting.contains(neighbor))
+                    return true;
+
+                if (hasCycle(neighbor, all, visiting, visited))
+                    return true;
+            }
+        }
+
+        visiting.remove(node);
+        visited.add(node);
+
+        return false;
+    }
 }
