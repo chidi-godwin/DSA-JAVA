@@ -4,20 +4,17 @@ import org.jetbrains.annotations.NotNull;
 
 public class Main {
     public static void main(String[] args) {
-        final Graph graph = getGraph();
+        final UGraph ugraph = new UGraph();
+        ugraph.addEdge(1, 2, 3);
+        ugraph.addEdge(1, 4, 2);
+        ugraph.addEdge(1, 3, 4);
+        ugraph.addEdge(2, 4, 6);
+        ugraph.addEdge(3, 4, 1);
+        ugraph.addEdge(2, 5, 1);
+        ugraph.addEdge(4, 5, 5);
 
-        testGraphTraversal(graph);
-
-        graph.print();
-
-        graph.removeEdge(5, 9);
-        System.out.println("remove edge 9 from 5");
-        graph.print();
-
-        System.out.println("remove node 9");
-        graph.removeNode(9);
-        graph.print();
-
+        int shortestDistance = ugraph.getShortestDistance(1, 5);
+        System.out.println(shortestDistance);
     }
 
     private static void testGraphTraversal(Graph graph) {
