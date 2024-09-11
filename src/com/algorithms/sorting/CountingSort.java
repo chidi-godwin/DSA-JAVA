@@ -10,7 +10,7 @@ public class CountingSort {
     }
 
     public static void sort(int[] array) {
-        if (array.length == 0) return;
+        if (array == null || array.length <= 1) return;
 
         // get the max element in the array
         int max = Arrays.stream(array).max().getAsInt();
