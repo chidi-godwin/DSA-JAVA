@@ -3,10 +3,8 @@ package com.algorithms.searching;
 public class BinarySearch {
     public static void main(String[] args) {
         int[] numbers = new int[] { 3, 5, 6, 9, 11, 18, 20, 21, 24, 30};
-        int [] outliers = new int[] {3, 9, 20, 30};
-        for (int num: outliers)
-            if (searchR(numbers, num) == -1)
-                System.out.println(num);
+        for (int num: numbers)
+            System.out.println(search(numbers, num));
     }
 
     public static int search(int[] array, int target) {
